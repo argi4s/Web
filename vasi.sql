@@ -30,8 +30,6 @@ create table eidh(
     id int(11) not null auto_increment,onoma varchar(40) not null,primary key(id)
 )engine=InnoDB;
 
-//////
-
 create table users(
 	name varchar(40) not null,
 	surname varchar(40) not null,
@@ -43,7 +41,8 @@ create table users(
 
 create table politis(
 	username varchar(40) not null,
-	diefthinsi varchar(255) not null, 
+	dromos varchar(255) not null, 
+	arithmos int(4) not null,
 	primary key (username),
 	constraint fk6 foreign key (username) references users(username) 
 on delete cascade on update cascade
@@ -73,10 +72,6 @@ create table apothiki(
 	constraint fk10 foreign key (eidosid) references eidh(id)
 on delete cascade on update cascade
 )engine=InnoDB;
-
-
-/////////
-
 
 drop trigger if exists apotropi_aitimaton
 delimiter$
