@@ -1,6 +1,6 @@
-drop database if exist base;
+drop database if exists base;
 create database base;
-use database base;
+use  base;
 
 create table users(
 	name varchar(40) not null,
@@ -29,13 +29,13 @@ create table politis(
 	arithmos int(4) not null,
 	primary key (username),
 	constraint fk6 foreign key (username) references users(username) 
-on delete cascade on update cascade
+    on delete cascade on update cascade
 )engine=InnoDB;
 
 create table eidh(
     id int(11) not null auto_increment,
     posotita float(7,2) not null,
-    onoma varchar(40) not null,
+    onoma varchar(40) unique,
     primary key(id)
 )engine=InnoDB;
 
@@ -45,15 +45,15 @@ create table aitimata(
     politis_username varchar(40) not null,
     date_kataxorisis datetime,
     date_analipsis datetime,
-    eidos varchar(40) not null, 
+    eidos int(11) not null, 
     posotita float(7,2) not null,
     primary key (aitimata_id),
     constraint fk3 foreign key (diaswstis_username) references diaswstis(username)
-on delete cascade on update cascade,
+    on delete cascade on update cascade,
     constraint fk4 foreign key (politis_username) references politis(username)
-on delete cascade on update cascade,
-    constraint fk5 foreign key (eidos) references eidh(onoma)
-on delete cascade on update cascade
+    on delete cascade on update cascade,
+    constraint fk5 foreign key (eidos) references eidh(id)
+    on delete cascade on update cascade
 )engine=InnoDB;
 
 create table prosfores(
@@ -62,15 +62,15 @@ create table prosfores(
 	politis_username varchar(40) not null, 
 	date_kataxorisis datetime,
 	date_analipsis datetime,
-	eidos varchar(40) not null, 
+	eidos int(11) not null, 
 	posotita float(7,2) not null,
 	primary key (prosfores_id),
 	constraint fk7 foreign key (diaswstis_username) references diaswstis(username)
-on delete cascade on update cascade,
+    on delete cascade on update cascade,
 	constraint fk8 foreign key (politis_username) references politis(username) 
-on delete cascade on update cascade,
-	constraint fk9 foreign key (eidos) references eidh(onoma) 
-on delete cascade on update cascade
+    on delete cascade on update cascade,
+	constraint fk9 foreign key (eidos) references eidh(id) 
+    on delete cascade on update cascade
 )engine=InnoDB;
 
 drop trigger if exists apotropi_aitimaton
