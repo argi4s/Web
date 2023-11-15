@@ -45,7 +45,7 @@ create table aitimata(
     politis_username varchar(40) not null,
     date_kataxorisis datetime,
     date_analipsis datetime,
-    eidos varchar(20) not null, 
+    eidos varchar(40) not null, 
     posotita float(7,2) not null,
     primary key (aitimata_id),
     constraint fk3 foreign key (diaswstis_username) references diaswstis(username)
@@ -62,7 +62,7 @@ create table prosfores(
 	politis_username varchar(40) not null, 
 	date_kataxorisis datetime,
 	date_analipsis datetime,
-	eidos varchar(20) not null, 
+	eidos varchar(40) not null, 
 	posotita float(7,2) not null,
 	primary key (prosfores_id),
 	constraint fk7 foreign key (diaswstis_username) references diaswstis(username)
