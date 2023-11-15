@@ -58,13 +58,13 @@ on delete cascade on update cascade
 
 create table prosfores(
 	diaswstis_username varchar(40),
-	aitimata_id int(11) not null auto_increment,
+	prosfores_id int(11) not null auto_increment,
 	politis_username varchar(40) not null, 
 	date_kataxorisis datetime,
 	date_analipsis datetime,
 	eidos varchar(20) not null, 
 	posotita float(7,2) not null,
-	primary key (aitimata_id),
+	primary key (prosfores_id),
 	constraint fk7 foreign key (diaswstis_username) references diaswstis(username)
 on delete cascade on update cascade,
 	constraint fk8 foreign key (politis_username) references politis(username) 
