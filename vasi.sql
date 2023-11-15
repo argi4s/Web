@@ -29,3 +29,15 @@ create table aitimata(
 create table eidh(
     id int(11) not null auto_increment,onoma varchar(40) not null,primary key(id)
 )engine=InnoDB;
+
+
+drop trigger if exists apotropi_aitimaton
+delimiter$
+create trigger apotropi_aitimaton before update on aitimata for each row
+begin 
+    DECLARE message_text text;
+    if diaswstis_username>4 then 
+       SIGNAL SQLSTATE VALUE '45000' SET message_text='den ginetai na parei pano apo 4 aitimata' 
+    end if;
+end$
+delimiter;
