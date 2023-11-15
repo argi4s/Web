@@ -2,16 +2,24 @@ drop database if exist base;
 create database base;
 use database base;
 
+create table users(
+	name varchar(40) not null,
+	surname varchar(40) not null,
+	username varchar(40) unique not null,
+	phone int(10) unsigned not null, 
+	password varchar(40) not null,
+	primary key (username)
+)engine=InnoDB;
+
 create table admin(
     username varchar(40) not null ,primary key (username) ,
     constraint fk1 foreign key(username) 
-    references admin(username) on delete cascascade on update cascade
+    references users(username) on delete cascade on update cascade
 )engine=InnoDB;
-
 
 create table diaswstis(
     username varchar(40) not null, primary key (username),
-    constraint fk2 foreign key (username) references admin(username) 
+    constraint fk2 foreign key (username) references users(username) 
     on delete cascade on update cascade
 )engine=InnoDB;
 
@@ -28,15 +36,6 @@ create table aitimata(
 
 create table eidh(
     id int(11) not null auto_increment,onoma varchar(40) not null,primary key(id)
-)engine=InnoDB;
-
-create table users(
-	name varchar(40) not null,
-	surname varchar(40) not null,
-	username varchar(40) unique not null,
-	phone int(10) unsigned not null, 
-	password varchar(40) not null,
-	primary key (username)
 )engine=InnoDB;
 
 create table politis(
