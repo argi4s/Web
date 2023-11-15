@@ -34,16 +34,9 @@ on delete cascade on update cascade
 
 create table eidh(
     id int(11) not null auto_increment,
+    posotita float(7,2) not null,
     onoma varchar(40) not null,
     primary key(id)
-)engine=InnoDB;
-
-create table apothiki(
-	eidosid int(11) not null,
-	posotita float(7,2) not null,
-	primary key (eidosid)
-	constraint fk10 foreign key (eidosid) references eidh(id)
-on delete cascade on update cascade
 )engine=InnoDB;
 
 create table aitimata(
