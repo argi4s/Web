@@ -73,13 +73,25 @@ create table prosfores(
     on delete cascade on update cascade
 )engine=InnoDB;
 
-drop trigger if exists apotropi_aitimaton
-delimiter$
-create trigger apotropi_aitimaton before update on aitimata for each row
-begin 
-    DECLARE message_text text;
-    if diaswstis_username>4 then 
-       SIGNAL SQLSTATE VALUE '45000' SET message_text='den ginetai na parei pano apo 4 aitimata' 
-    end if;
-end$
-delimiter;
+drop trigger if exists before_insert_aitimata;
+DELIMITER $
+
+CREATE TRIGGER before_insert_aitimata
+BEFORE INSERT ON aitimata
+FOR EACH ROW
+BEGIN
+    DECLARE count_diaswstis INT;
+
+   
+    SELECT COUNT(*) INTO count_diaswstis
+    FROM aitimata
+    WHERE diaswstis_username = NEW.diaswstis_username;
+
+  
+    IF count_diaswstis >= 4 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Error: diaswstis_username already exists 4 times or more.';
+    END IF;
+END $
+
+DELIMITER ;
