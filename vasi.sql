@@ -95,3 +95,28 @@ BEGIN
 END $
 
 DELIMITER ;
+
+
+
+drop trigger if exists before_insert_prosfores;
+DELIMITER $
+
+CREATE TRIGGER before_insert_prosfores
+BEFORE INSERT ON prosfores
+FOR EACH ROW
+BEGIN
+    DECLARE count_diaswstis INT;
+
+    
+    SELECT COUNT(*) INTO count_diaswstis
+    FROM prosfores
+    WHERE diaswstis_username = NEW.diaswstis_username;
+
+    
+    IF count_diaswstis >= 4 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Error: diaswstis_username already exists 4 times or more.';
+    END IF;
+END $
+
+DELIMITER ;
