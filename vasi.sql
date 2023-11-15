@@ -73,6 +73,7 @@ create table prosfores(
     on delete cascade on update cascade
 )engine=InnoDB;
 
+--to trigger den epitrepei na boun pano apo 4 aitimata i prosfores ston diasosti
 drop trigger if exists before_insert_aitimata;
 DELIMITER $
 
@@ -80,17 +81,20 @@ CREATE TRIGGER before_insert_aitimata
 BEFORE INSERT ON aitimata
 FOR EACH ROW
 BEGIN
-    DECLARE count_diaswstis INT;
+    DECLARE total_count INT;
 
    
-    SELECT COUNT(*) INTO count_diaswstis
-    FROM aitimata
-    WHERE diaswstis_username = NEW.diaswstis_username;
+    SELECT COUNT(*) INTO total_count
+    FROM (
+        SELECT diaswstis_username FROM aitimata WHERE diaswstis_username = NEW.diaswstis_username
+        UNION ALL
+        SELECT diaswstis_username FROM prosfores WHERE diaswstis_username = NEW.diaswstis_username
+    ) AS combined;
 
-  
-    IF count_diaswstis >= 4 THEN
+    
+    IF total_count >= 4 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Error: diaswstis_username already exists 4 times or more.';
+        SET MESSAGE_TEXT = 'Cannot insert more than 4 entries for the same diaswstis_username in aitimata and prosfores combined.';
     END IF;
 END $
 
@@ -98,6 +102,7 @@ DELIMITER ;
 
 
 
+--to trigger den epitrepei na boun pano apo 4 aitimata i prosfores ston diasosti
 drop trigger if exists before_insert_prosfores;
 DELIMITER $
 
@@ -105,17 +110,20 @@ CREATE TRIGGER before_insert_prosfores
 BEFORE INSERT ON prosfores
 FOR EACH ROW
 BEGIN
-    DECLARE count_diaswstis INT;
+    DECLARE total_count INT;
 
     
-    SELECT COUNT(*) INTO count_diaswstis
-    FROM prosfores
-    WHERE diaswstis_username = NEW.diaswstis_username;
+    SELECT COUNT(*) INTO total_count
+    FROM (
+        SELECT diaswstis_username FROM aitimata WHERE diaswstis_username = NEW.diaswstis_username
+        UNION ALL
+        SELECT diaswstis_username FROM prosfores WHERE diaswstis_username = NEW.diaswstis_username
+    ) AS combined;
 
     
-    IF count_diaswstis >= 4 THEN
+    IF total_count >= 4 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Error: diaswstis_username already exists 4 times or more.';
+        SET MESSAGE_TEXT = 'Cannot insert more than 4 entries for the same diaswstis_username in aitimata and prosfores combined.';
     END IF;
 END $
 
