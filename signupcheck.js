@@ -54,3 +54,4 @@ function validateRegistrationForm() {
         return true;
     }
 }
+document.getElementById('signup').addEventListener('click', validateRegistrationForm);
