@@ -23,32 +23,32 @@ function validateRegistrationForm() {
         return false;
     }
 	
-	if (Street.trim() === "") {
+    if (Street.trim() === "") {
         alert("Street cannot be empty");
         return false;
     }
 	
-	if (Number.trim() === "") {
+    if (Number.trim() === "") {
         alert("Number cannot be empty");
         return false;
     }
 	
-	if (FirstName.trim() === "") {
+    if (FirstName.trim() === "") {
         alert("First Name cannot be empty");
         return false;
     }
 	
-	if (LastName.trim() === "") {
+    if (LastName.trim() === "") {
         alert("Last Name cannot be empty");
         return false;
     }
 	
-	if (PhoneNumber.trim() === "") {
+    if (PhoneNumber.trim() === "") {
         alert("Phone Number cannot be empty");
         return false;
     }
 	
-	else {
+    else {
         alert("Account Created Successfully");
         window.location.href = 'login.html';
         return true;
