@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select</title>
+    
+    <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+  }
+  
+  .product-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+  }
+  
+  .product-card img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+  }
+  
+  .counter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+  }
+  
+  .counter button {
+      padding: 5px 10px;
+      cursor: pointer;
+  }
+  
+  #counter-product1 {
+      margin: 0 10px;
+      font-weight: bold;
+      font-size: 18px;
+  }
+    
+</style>
+  </head>
+<body>
+    
+
+  <h2>Choose quantity and kind</h2>
+
+  <div class="product-card" id="product1">
+      <img src="https://picsum.photos/200/300" alt="Product 1">
+      <p>Nai nai daneika makaronia bloody nai</p>
+      <div class="counter">
+          <button onclick="decrementCounter('product1')">-</button>
+          <span id="counter-product1">0</span>
+          <button onclick="incrementCounter('product1')">+</button>
+      </div>
+  </div>
+
+      
+      <script>
+        // Function to increment the counter
+function incrementCounter(productId) {
+    var counterElement = document.getElementById('counter-' + productId);
+    var currentCount = parseInt(counterElement.innerText);
+    counterElement.innerText = currentCount + 1;
+
+    // Save the counter value to local storage
+    localStorage.setItem(productId, currentCount + 1);
+}
+
+// Function to decrement the counter
+function decrementCounter(productId) {
+    var counterElement = document.getElementById('counter-' + productId);
+    var currentCount = parseInt(counterElement.innerText);
+
+    // Ensure the count doesn't go below zero
+    if (currentCount > 0) {
+        counterElement.innerText = currentCount - 1;
+
+        // Save the counter value to local storage
+        localStorage.setItem(productId, currentCount - 1);
+    }
+}
+
+// Function to initialize counters from local storage
+function initializeCounters() {
+    // Loop through each product card
+    document.querySelectorAll('.product-card').forEach(function (card) {
+        var productId = card.id;
+        var storedCount = localStorage.getItem(productId);
+
+        if (storedCount !== null) {
+            // Update the counter with the stored value
+            document.getElementById('counter-' + productId).innerText = storedCount;
+        }
+    });
+}
+
+// Initialize counters when the page loads
+window.onload = initializeCounters;
+      </script>
+</body>
+</html>

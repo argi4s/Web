@@ -1,0 +1,27 @@
+body {
+    margin: 50px;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.cards {
+    width: 30%;
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+.card {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.map {
+    flex: 1;
+    height: 600px;
+    width: 100%;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+
+    <h2>Login</h2>
+
+    <form id="loginForm" onsubmit="return validateForm()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div id="successMessage" style="display: none;">
+        <p>Login successful! Click <a href="main.html">here</a> to go to the main page.</p>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Get values from the form
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Mocking a simple login check. You may replace this with your actual login logic.
+            if (password.length >= 6 && password.length <= 20) {
+                // Show the success message and hide the form
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("successMessage").style.display = "block";
+                
+                // Prevent the form submission
+                return false;
+            } else {
+                alert("Invalid username or password. Please try again.");
+                return false;
+            }
+        }
+    </script>
+
+</body>
+</html>

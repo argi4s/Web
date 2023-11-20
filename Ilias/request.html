@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Request</title>
+    <link rel="stylesheet" href="justalilbit.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+    <h2>Create Request</h2>
+
+    <form id="requestForm">
+        <label for="requestInput">Request Details:</label>
+        <input type="text" id="requestInput" name="requestInput" required>
+
+        
+        <input type="hidden" id="selectedLat" name="selectedLat">
+        <input type="hidden" id="selectedLng" name="selectedLng">
+
+        <button type="button" onclick="submitRequest()">Submit Request</button>
+    </form>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="mapshit.js"></script>
+    <script src="requestScript.js"></script>
+
+</body>
+</html>
+
+<!--1.Bazw map kai sto requests
+2 ftiaxnw form
+3 emfanizw to input tou form sta cards-->
