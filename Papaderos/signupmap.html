@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signupmap</title>
+    <link rel="stylesheet" href="justalilbit.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+	<style>
+        #map {
+            width: 400px;
+			height: 400px;
+        }
+    </style>
+</head>
+	<body>
+		<div class="container">
+			<div class="cards">
+				<div class="card">Pinpoint your location on the map below</div>
+			</div>
+			<div id="map" class="map"></div>
+			<button type="button" id="createAccount" onclick="createAccount()" >Create Account</button>
+		</div>   
+		<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+		<script src="signupcheck.js"></script>
+	</body>
+</html>
