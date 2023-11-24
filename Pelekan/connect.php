@@ -1,6 +1,12 @@
 <?php
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $phoneNumber = $_POST['phoneNumber'];
+
+
 
 
     //database connection
