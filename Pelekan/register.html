@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row col-md-6 col-md-offset-3">
+            <div class="card card-primary">
+                <div class="card-header text-center">
+                    <h1>Registration Form</h1>
+                </div>
+                <div class="card-body">
+                    <form class="form-group" action="index.html" method="post" name="form" onsubmit="return registration_validated()">
+                        <div class="form-group">
+                            <label for="Name">Name</label>
+                            <div><input type="text" class="form control" name="name" id="Name"></div>
+                            <div id="Name_error">Please fill up your Name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Surname">Surname</label>
+                            <div><input type="text" class="form control" Surname="Surname" id="Surname"></div>  
+                            <div id="Surname_error">Please fill up your Surname</div> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Username">Username</label>
+                            <div><input type="text" class="form control" Username="Username" id="Username"></div>
+                            <div id="Username_error">Please fill up your Username</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PhoneNumber">PhoneNumber</label>
+                            <div><input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]{10}"></div>
+                            <div id="PhoneNumber_error">Please fill up your PhoneNumber</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <div><input type="Password" class="form control" Password="Password" id="Password"></div>
+                            <div id="Password_error">Please fill up your Password</div>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary">
+                    </form>
+                </div>
+                <div class="card-footer text-right ">
+                   <small>&copy; TSMpeli</small> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="register_valid.js"></script>
+</body>
+</html>
