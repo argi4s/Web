@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="justalilbit.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+	<style>
+        #map {
+            width: 600px;
+			height: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="cards">
+            <div class="card">Base</div>
+            <div class="card">Card 2</div>
+            <div class="card">Card 3</div>
+        </div>
+        <div id="map" class="map"></div>
+		<div class="filter-container">
+            <label><input type="checkbox" id="lifthedaaitimata" onclick="toggleLayer('layer2')"> Ληφθέντα αιτήματα</label>
+            <label><input type="checkbox" id="ekkremiaitimata" onclick="toggleLayer('layer3')"> Εκκρεμή αιτήματα</label>
+        </div>
+        <div id="requests" class="requests">
+            <p>Submit a request <a href="request.html">here</a></p>
+        </div>
+
+    </div>
+
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="mainmap.js"></script>
+
+</body>
+</html>
