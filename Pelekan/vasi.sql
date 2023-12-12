@@ -130,3 +130,14 @@ END $
 DELIMITER ;
 
 --prosthiki sta aitimata kai stis prosfores text pou na leei se posa atoma anaferesai
+
+
+
+
+alter table users 
+add  lat varchar(40) not null;
+
+
+
+alter table users 
+add  lng varchar(40) not null;
