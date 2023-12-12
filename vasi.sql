@@ -128,3 +128,14 @@ BEGIN
 END $
 
 DELIMITER ;
+
+
+
+alter table users 
+add  lat varchar(40) not null;
+
+
+
+alter table users 
+add  lng varchar(40) not null;
+
