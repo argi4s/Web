@@ -12,16 +12,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $query = "INSERT INTO users (Name, Surname, Username, PhoneNumber, Password) VALUES (?, ?, ?, ?, ?);";
 
+        
+
         $stmt = $pdo->prepare($query);
 
         $stmt->execute([$Name, $Surname, $Username, $PhoneNumber, $Password]);
+
+        
+
+
+        $query = "INSERT INTO politis (Username) VALUES (?);";
+
+        $stmt = $pdo->prepare($query);
+
+        $stmt->execute([$Username]);
 
         
         $pdo = null;
         $stmt = null;
 
         
-        header("Location: register.html");
+        header("Location: index.html");
         die();
     } catch (PDOException $e) {
         
