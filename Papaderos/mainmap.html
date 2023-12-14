@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 	<style>
         #map {
-            width: 600px;
-			height: 600px;
+            width: 1000px;
+			height: 800px;
         }
     </style>
 </head>
@@ -23,8 +23,11 @@
         </div>
         <div id="map" class="map"></div>
 		<div class="filter-container">
-            <label><input type="checkbox" id="lifthedaaitimata" onclick="toggleLayer('layer2')"> Ληφθέντα αιτήματα</label>
-            <label><input type="checkbox" id="ekkremiaitimata" onclick="toggleLayer('layer3')"> Εκκρεμή αιτήματα</label>
+            <label><input type="checkbox" id="layer2" onclick="toggleLayer('layer2')"> Ληφθέντα αιτήματα</label>
+            <label><input type="checkbox" id="layer3" onclick="toggleLayer('layer3')"> Εκκρεμή αιτήματα</label>
+			<label><input type="checkbox" id="layer4" onclick="toggleLayer('layer4')"> Προσφορές</label>
+			<label><input type="checkbox" id="layer5" onclick="toggleLayer('layer5')"> Οχήματα</label>
+			<label><input type="checkbox" id="layer6" onclick="toggleLayer('layer6')"> Διαδρομές</label>
         </div>
         <div id="requests" class="requests">
             <p>Submit a request <a href="request.html">here</a></p>
