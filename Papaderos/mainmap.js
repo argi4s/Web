@@ -69,14 +69,29 @@ function toggleLayer(layerId) {
 
 let marker;
 let chosenLatitude, chosenLongitude;
+let routingControl;
 
 map.on('click', function (e) {
     if (marker) {
-        map.removeLayer(marker);		
-}
+        map.removeLayer(marker);
+    }
+    if (routingControl) {
+        map.removeControl(routingControl);
+    }
     let clickedLatLng = e.latlng;
-	chosenLatitude = clickedLatLng.lat;
+    chosenLatitude = clickedLatLng.lat;
     chosenLongitude = clickedLatLng.lng;
+
     marker = L.marker([chosenLatitude, chosenLongitude]).addTo(map)
-    .bindPopup("den doulevei gamw");
+        .bindPopup("New Marker: " + chosenLatitude + ", " + chosenLongitude);
+
+    routingControl = L.Routing.control({
+        waypoints: [
+            L.latLng(51.505, -0.09),
+            L.latLng(chosenLatitude, chosenLongitude)
+        ],
+	routeWhileDragging: true,
+    fitSelectedRoutes: false,
+	show: false
+    }).addTo(map);
 });
