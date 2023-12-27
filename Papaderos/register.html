@@ -7,66 +7,65 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 	<style>	
         #map {
-            width: 1700px;
-			height: 900px;
-			position: absolute;
-			display: inline-block;
-			top: 0;
-            left: 0; 
-			z-index: -1; 			
+			width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row col-md-6">
-            <div class="card card-primary">
-                <div class="card-header text-center">
-                    <h1>Registration Form</h1>
-                </div>
-                <div class="card-body">
-                    <form class="form-group" action="formhandler.inc.php" method="post"  name="form" onsubmit="return registration_validated()">
-                        <div class="form-group">
-                            <label for="Name">Name</label>
-                            <div><input type="text" class="form-control" name="Name" id="Name"></div>
-                            <div id="Name_error">Please fill up your Name</div>
-                        </div>
+        <div class="row">
+			<div class="col-md-3">
+				<div class="card card-primary">
+					<div class="card-header text-center">
+						<h1>Registration Form</h1>
+					</div>
+					<div class="card-body">
+						<form class="form-group" action="formhandler.inc.php" method="post"  name="form" onsubmit="return registration_validated()">
+							<div class="form-group">
+								<label for="Name">Name</label>
+								<div><input type="text" class="form-control" name="Name" id="Name"></div>
+								<div id="Name_error">Please fill up your Name</div>
+							</div>
 
-                        <div class="form-group">
-                            <label for="Surname">Surname</label>
-                            <div><input type="text" class="form-control" name="Surname" id="Surname"></div>  
-                            <div id="Surname_error">Please fill up your Surname</div> 
-                        </div>
+							<div class="form-group">
+								<label for="Surname">Surname</label>
+								<div><input type="text" class="form-control" name="Surname" id="Surname"></div>  
+								<div id="Surname_error">Please fill up your Surname</div> 
+							</div>
                         
-                        <div class="form-group">
-                            <label for="Username">Username</label>
-                            <div><input type="text" class="form-control" name="Username" id="Username"></div>
-                            <div id="Username_error">Please fill up your Username</div>
-                        </div>
+							<div class="form-group">
+								<label for="Username">Username</label>
+								<div><input type="text" class="form-control" name="Username" id="Username"></div>
+								<div id="Username_error">Please fill up your Username</div>
+							</div>
 
-                        <div class="form-group">
-                            <label for="PhoneNumber">PhoneNumber</label>
-                            <div><input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]{10}"></div>
-                            <div id="PhoneNumber_error">Please fill up your PhoneNumber</div>
-                        </div>
+							<div class="form-group">
+								<label for="PhoneNumber">PhoneNumber</label>
+								<div><input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]{10}"></div>
+								<div id="PhoneNumber_error">Please fill up your PhoneNumber</div>
+							</div>
 
-                        <div class="form-group">
-                            <label for="Password">Password</label>
-                            <div><input type="Password" class="form-control" name="Password" id="Password"></div>
-                            <div id="Password_error">Please fill up your Password</div>
-                        </div>
-                        <input type="hidden" name="chosenLatitude" id="chosenLatitude" value="">
-						<input type="hidden" name="chosenLongitude" id="chosenLongitude" value="">
-						<input type="submit" class="btn btn-primary">
-                    </form>
-                </div>
-                <div class="card-footer text-right ">
-                   <small>&copy; TSMpeli</small> 
-                </div>
+							<div class="form-group">
+								<label for="Password">Password</label>
+								<div><input type="Password" class="form-control" name="Password" id="Password"></div>
+								<div id="Password_error">Please fill up your Password</div>
+							</div>
+							<input type="hidden" name="chosenLatitude" id="chosenLatitude" value="">
+							<input type="hidden" name="chosenLongitude" id="chosenLongitude" value="">
+							<input type="submit" class="btn btn-primary">
+						</form>
+					</div>
+					<div class="card-footer text-right ">
+						<small>&copy; TSMpeli</small> 
+					</div>
+				</div>
             </div>
+			<div class="col-md-9">
+				<div id="map" class="map"></div>
+			</div>
         </div>
     </div>
-		<div id="map" class="map"></div>
 	<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="register_valid.js"></script>
 </body>
