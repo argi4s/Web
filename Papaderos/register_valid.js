@@ -1,4 +1,10 @@
-var Name = document.forms['form']['Name'];
+const map = L.map('map').setView([51.505, -0.09], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+var marker;
+
 var Name = document.forms['form']['Name'];
 var Surname = document.forms['form']['Surname'];
 var Username = document.forms['form']['Username'];
@@ -14,7 +20,6 @@ var PhoneNumber_error = document.getElementById('PhoneNumber_error');
 var Password_error = document.getElementById('Password_error');
 var Location_error = document.getElementById('Location_error');
 
-
 Name.addEventListener('textInput', Name_Verify);
 Surname.addEventListener('textInput', Surname_Verify);
 Username.addEventListener('textInput', Username_Verify);
@@ -23,25 +28,34 @@ Password.addEventListener('textInput', Password_Verify);
 chosenLatitude.addEventListener('textInput', Location_Verify);
 chosenLongitude.addEventListener('textInput', Location_Verify);
 
-const map = L.map('map').setView([51.505, -0.09], 13);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-
-let marker;
-let chosenLatitude, chosenLongitude;
-
-map.on('click', function (e) {
-    if (marker) {
-        map.removeLayer(marker);		
+function updateFormLatLng(latlng) {
+    document.querySelector('input[name="chosenLatitude"]').value = latlng.lat;
+    document.querySelector('input[name="chosenLongitude"]').value = latlng.lng;
 }
-    let clickedLatLng = e.latlng;
-	chosenLatitude = clickedLatLng.lat;
-    chosenLongitude = clickedLatLng.lng;
-    marker = L.marker([chosenLatitude, chosenLongitude]).addTo(map)
-    .bindPopup("Marker Position: " + chosenLatitude + ", " + chosenLongitude);
-	document.getElementById('chosenLatitude').value = chosenLatitude;
-    document.getElementById('chosenLongitude').value = chosenLongitude;
+
+map.on('click', function(e) {
+    var latlng = e.latlng;
+    var popupContent = "Position: " + latlng.lat.toFixed(5) + ", " + latlng.lng.toFixed(5);
+
+    if (marker) {
+        marker.setLatLng(latlng);
+        marker.getPopup().setContent(popupContent);
+    } else {
+        marker = L.marker(latlng, {
+            draggable: true
+        }).addTo(map)
+        .bindPopup(popupContent)
+        .openPopup();
+		
+        marker.on('dragend', function(e) {
+            var newLatlng = e.target.getLatLng();
+            var newPopupContent = "Position: " + newLatlng.lat.toFixed(5) + ", " + newLatlng.lng.toFixed(5);
+            e.target.getPopup().setContent(newPopupContent);
+            updateFormLatLng(newLatlng);
+        });
+    }
+
+updateFormLatLng(latlng);
 });
 
 function registration_validated(){
@@ -109,7 +123,7 @@ function Username_Verify(){
 }
 
 function PhoneNumber_Verify(){
-    if(PhoneNumber.value.length = 10){
+    if(PhoneNumber.value.length == 10){
        PhoneNumber.style.border = "1px solid silver";
        PhoneNumber_error.style.display = "none";
        return true;
